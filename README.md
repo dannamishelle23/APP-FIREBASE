@@ -24,3 +24,8 @@ Esta función register se encarga de:
 Además, se hace modificación  en  registro.page.ts
 
 ![registro.ts](registro-ts.png)
+
+En este caso, intenta llamar a un servicio de autenticación para crear el nuevo usuario con el correo y la contraseña proporcionados. 
+- Si el registro es exitoso, muestra un mensaje de alerta al usuario y lo redirige a la página de inicio.
+- Si ocurre un error, muestra un mensaje de alerta con el error. 
+

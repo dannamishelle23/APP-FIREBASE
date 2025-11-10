@@ -18,4 +18,14 @@
   <ion-button expand="block" (click)="onRegister()" [disabled]="loading">
     {{ loading ? 'Registrando...' : 'Registrarse' }}
   </ion-button>
+
+  <ion-button
+    fill="clear"
+    size="small"
+    color="medium"
+    routerLink="/login"
+    class="login-btn">
+    ¿Ya estás registrado? Haz clic aquí para Iniciar sesión
+  </ion-button>
+
 </ion-content>

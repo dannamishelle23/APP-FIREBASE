@@ -1,28 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding login-page">
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Correo</ion-label>
-    <ion-input type="email" [(ngModel)]="email" placeholder = "Correo electrónico..."></ion-input>
-  </ion-item>
+  <div class="login-container">
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password" placeholder = "Contraseña..."></ion-input>
-  </ion-item>
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="titulo">Iniciar sesión</ion-card-title>
+      </ion-card-header>
 
-  <ion-text color="danger" *ngIf="mensaje">{{ mensaje }}</ion-text>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input
+            type="email"
+            [(ngModel)]="email">
+          </ion-input>
+        </ion-item>
 
-  <ion-button expand="block" (click)="onLogin()" [disabled]="loading">
-    {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
-  </ion-button>
+        <ion-item lines="none">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="password">
+          </ion-input>
+        </ion-item>
 
-  <ion-button fill="clear" routerLink="/recuperar">
-    ¿Olvidaste tu contraseña?
-  </ion-button>
+        <ion-text color="danger" *ngIf="mensaje" class="error-text">
+          {{ mensaje }}
+        </ion-text>
+
+        <ion-button
+          expand="block"
+          color="primary"
+          shape="round"
+          (click)="onLogin()"
+          [disabled]="loading"
+          class="login-btn">
+          {{ loading ? 'Ingresando...' : 'Ingresar' }}
+        </ion-button>
+
+        <ion-button
+          fill="clear"
+          size="small"
+          color="medium"
+          routerLink="/reset"
+          class="recuperar-btn">
+          ¿Olvidaste tu contraseña?
+        </ion-button>
+
+        <ion-button
+          fill="clear"
+          size="small"
+          color="medium"
+          routerLink="/registro"
+          class="registro-btn">
+          ¿No tienes una cuenta? Regístrate
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 
 </ion-content>

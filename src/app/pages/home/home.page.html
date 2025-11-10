@@ -1,10 +1,66 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "primary">
     <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Bienvenido </h2>
+    <!-- MENÚ PRINCIPAL -->
+  <div *ngIf="!option" class="menu">
+    <ion-button expand="block" color="success" (click)="selectOption('joke')">
+      Generar un chiste aleatorio
+    </ion-button>
+
+    <ion-button expand="block" color="warning" (click)="selectOption('cat')">
+      Ver imagen de un gato
+    </ion-button>
+
+    <ion-button expand="block" color="tertiary" (click)="selectOption('dog')">
+      Ver imagen de un perro
+    </ion-button>
+  </div>
+
+  <!-- CARGANDO -->
+  <ion-spinner *ngIf="loading" class="center-spinner"></ion-spinner>
+
+  <!-- RESULTADOS -->
+  <div *ngIf="!loading && option">
+
+    <!-- CHISTE -->
+    <div *ngIf="option === 'joke' && content">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ content.category }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p *ngIf="content.type === 'single'">{{ content.joke }}</p>
+          <div *ngIf="content.type === 'twopart'">
+            <p><strong>{{ content.setup }}</strong></p>
+            <p>{{ content.delivery }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- IMAGEN DE UN GATO -->
+    <div *ngIf="option === 'cat' && content">
+      <ion-card>
+        <img [src]="content.url" alt="Cat">
+      </ion-card>
+    </div>
+
+    <!-- IMAGEN DE UN PERRO -->
+    <div *ngIf="option === 'dog' && content">
+      <ion-card>
+        <img [src]="content.message" alt="Dog">
+      </ion-card>
+    </div>
+
+    <!-- BOTÓN VOLVER -->
+    <ion-button expand="block" color="medium" (click)="backToMenu()">
+      Volver al menú
+    </ion-button>
+
+  </div>
   <ion-button expand="block" (click)="logout()">Cerrar sesión</ion-button>
 </ion-content>
