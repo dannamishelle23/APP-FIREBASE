@@ -11,4 +11,16 @@ Se crea las funcionalidades en auth.ts
 
 ### 1. Registro
 
-!["registro"](registro.png)
+![registro](registro.png)
+
+Esta función register se encarga de:
+
+- Crear una nueva cuenta de usuario en Firebase Authentication con el correo y la contraseña.
+
+- Enviar un correo electrónico de verificación a esa dirección para que el usuario pueda confirmar que le pertenece.
+
+- Devolver la información de la sesión del usuario recién creado.
+
+Además, se hace modificación  en  registro.page.ts
+
+![registro.ts](registro-ts.png)

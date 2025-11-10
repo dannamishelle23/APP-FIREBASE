@@ -20,6 +20,7 @@ export class RegistroPage {
     this.loading = true;
     try {
       await this.auth.register(this.email, this.password);
+      alert('Registro exitoso! Revisa tu correo para verificar tu cuenta.');
       this.router.navigate(['/home']);
     } catch (e: any) {
       alert('Error al registrarse: ' + e.message);
@@ -27,6 +28,5 @@ export class RegistroPage {
       this.loading = false;
   }
   }
-
 }
 

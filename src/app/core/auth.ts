@@ -6,23 +6,24 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) {}
 
-  //Crear usuario nuevo
+  // Registro del usuario
   async register(email: string, password: string) {
-    try {
-    await this.afAuth.createUserWithEmailAndPassword(email, password);
-    alert('Registro exitoso! Ahora puedes iniciar sesión.');
-  } catch (e: any) {
-    alert('Error al registrarse: ' + e.message);
-  }}
+    //Crear el usuario en Firebase
+    const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    //Enviar el correo de verificación al usuario
+    await userCredential.user?.sendEmailVerification();
+    return userCredential;
+  }
 
   // Iniciar sesión
   async login(email: string, password: string) {
-    try {
-      await this.afAuth.signInWithEmailAndPassword(email, password);
-      alert('Inicio de sesión exitoso!');
-    } catch (e: any) {
-      alert('Error al iniciar sesión: ' + e.message);
-  }}
+    const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
+    if (!userCredential.user?.emailVerified) {
+      await this.afAuth.signOut();
+      throw new Error('Tu cuenta no está verificada. Revisa tu correo electrónico.');
+    }
+    return userCredential;
+  }
 
   // Recuperar contraseña
   async resetPassword(email: string): Promise<string> {
