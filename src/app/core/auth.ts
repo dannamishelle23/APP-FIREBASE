@@ -25,12 +25,12 @@ export class AuthService {
   }}
 
   // Recuperar contraseña
-  async resetPassword(email: string) {
+  async resetPassword(email: string): Promise<string> {
     try {
       await this.afAuth.sendPasswordResetEmail(email);
-      alert('Revisa tu correo para restablecer la contraseña.');
-    } catch (e: any) {
-      alert('Error al enviar el correo de restablecimiento: ' + e.message);
+      return 'Correo de recuperación enviado. Revisa tu bandeja de entrada.';
+    } catch (error: any) {
+      throw new Error(error.message);
   }}
 
   // Cerrar sesión
